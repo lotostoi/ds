@@ -1,0 +1,97 @@
+//  start global variables and styles ************************  *///
+//@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap");
+
+
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Roboto", sans-serif;
+}
+
+// fon's color
+$baseColor: #202020;
+
+// font's color 
+
+$fontColor: rgb(179, 179, 179);
+
+$textHover: orange;
+
+// button's color
+
+$buttonColor: rgb(15, 14, 14);
+
+$buttonTextColor: rgb(182, 179, 179);
+
+$buttonBlock: rgba(128, 128, 128, 0.863);
+
+// color text  Errors
+
+$textError: red;
+
+$heightMax: 100vh;
+
+$heightHeader: 75px;
+
+$heightFooter: 55px;
+
+.prog-color {
+  background-color: lightblue;
+}
+
+/* полоса прокрутки (скроллбар) */
+::-webkit-scrollbar {
+
+  width: 15px; /* ширина для вертикального скролла */
+  height: 8px; /* высота для горизонтального скролла */
+  background-color: #130b0a;
+}
+
+/* ползунок скроллбара */
+::-webkit-scrollbar-thumb {
+  margin: 0 3px;
+  width: 10px;
+  background-color: #1a0903;
+  border-radius: 9em;
+ box-shadow: inset 1px 1px 10px #f3faf7;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #253861;
+}
+
+/* Стрелки */
+
+::-webkit-scrollbar-button:vertical:start:decrement {
+  display: none;
+  background: linear-gradient(120deg, #02141a 40%, rgba(0, 0, 0, 0) 41%),
+    linear-gradient(240deg, #02141a 40%, rgba(0, 0, 0, 0) 41%), linear-gradient(0deg, #02141a 30%, rgba(0, 0, 0, 0) 31%);
+  background-color: #f6f8f4;
+}
+
+::-webkit-scrollbar-button:vertical:end:increment {
+  display: none;
+  background: linear-gradient(300deg, #02141a 40%, rgba(0, 0, 0, 0) 41%),
+    linear-gradient(60deg, #02141a 40%, rgba(0, 0, 0, 0) 41%),
+    linear-gradient(180deg, #02141a 30%, rgba(0, 0, 0, 0) 31%);
+  background-color: #f6f8f4;
+}
+
+::-webkit-scrollbar-button:horizontal:start:decrement {
+  display: none;
+  background: linear-gradient(30deg, #02141a 40%, rgba(0, 0, 0, 0) 41%),
+    linear-gradient(150deg, #02141a 40%, rgba(0, 0, 0, 0) 41%),
+    linear-gradient(270deg, #02141a 30%, rgba(0, 0, 0, 0) 31%);
+  background-color: #f6f8f4;
+}
+
+::-webkit-scrollbar-button:horizontal:end:increment {
+  display: none;
+  background: linear-gradient(210deg, #02141a 40%, rgba(0, 0, 0, 0) 41%),
+    linear-gradient(330deg, #02141a 40%, rgba(0, 0, 0, 0) 41%),
+    linear-gradient(90deg, #02141a 30%, rgba(0, 0, 0, 0) 31%);
+  background-color: #f6f8f4;
+}
+
+//  end global variables and styles ************************  *///
