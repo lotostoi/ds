@@ -25,10 +25,10 @@
         <img src="@/assets/img/icons/settings_icon.svg" alt="" />
       </div>
 
-      <field-menu-third-level
+     <!--  <field-menu-third-level
         :show="project.fields ? project.fields[0].show : false"
         :projects="project.fields"
-      ></field-menu-third-level>
+      ></field-menu-third-level> -->
     </li>
   </ul>
 </template>
