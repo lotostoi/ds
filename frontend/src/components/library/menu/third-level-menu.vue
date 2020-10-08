@@ -1,8 +1,12 @@
 <template>
-<main-template-menu :borderNo="borderNo" :toLink="toLink">
-    <template v-slot:title>{{ title }}</template>
+<main-template-menu :borderNo="borderNo" :toLink="toLink" class="second">
+    <template v-slot:title>
+        <div class="count">5</div>
+        {{ title }}
+    </template>
+
     <div>
-        <slot></slot>
+        <slot> </slot>
     </div>
 </main-template-menu>
 </template>
@@ -28,10 +32,32 @@ export default {
     },
     components: {
         MainTemplateMenu,
+        IconTriangle,
     },
     methods: {},
 };
 </script>
 
 <style lang="scss" scoped>
+.second {
+    padding-left: 15px;
+    box-sizing: border-box;
+}
+
+img {
+    margin-left: auto;
+    margin-right: 10px;
+}
+
+.count {
+    width: 22px;
+    height: 22px;
+    border: 1px solid #606060;
+    display: flex;
+    margin-right: 10px;
+    font-size: 11px;
+    justify-content: center;
+    align-items: center;
+    color: #b4b4b4;
+}
 </style>

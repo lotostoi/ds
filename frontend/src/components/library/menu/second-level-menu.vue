@@ -1,6 +1,7 @@
 <template>
-<main-template-menu :borderNo="borderNo" :toLink="toLink">
+<main-template-menu :borderNo="borderNo" :toLink="toLink" class="second">
     <template v-slot:title>{{ title }}</template>
+    <template v-slot:button><img src="@/assets/img/icons/settings_icon.svg" alt="" /></template>
     <div>
         <slot></slot>
     </div>
@@ -34,4 +35,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.second {
+    padding-left: 10px;
+    box-sizing: border-box;
+}
+
+img {
+    margin-left: auto;
+    margin-right: 5px;
+}
 </style>

@@ -5,7 +5,7 @@ const getContent = (arr, rout, chengProg) => {
     return new Promise(async (resolve, reject) => {
 
         for (let i = 0; i <= arr.length + 1; i++) {
-            console.log(i)
+
             let prog = (i * 100) / arr.length;
 
             if (arr[i]) {
@@ -20,7 +20,7 @@ const getContent = (arr, rout, chengProg) => {
                     });
                     let { text } = await response.json();
                     if (text == "Success") {
-                        chengProg( prog)
+                        chengProg(prog)
                     }
                 } catch (e) {
                     reject("Error loading file:" + e);
