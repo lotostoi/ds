@@ -24,9 +24,6 @@
 
 <script>
 export default {
-  data: () => ({
-    rotate: false,
-  }),
   props: {
       rotate:{
           type: Boolean,

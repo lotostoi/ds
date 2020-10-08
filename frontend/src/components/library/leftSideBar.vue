@@ -1,21 +1,8 @@
 <template>
   <div class="ds-left">
-    <menu-field-first-level
-      toLink="DsContent"
-      borderNo="top"
-      :projects="[]"
-      @btnclick="test"
-      >Content</menu-field-first-level
-    >
-    <menu-field-first-level toLink="DsGallery" :projects="[]" @btnclick="test"
-      >Gallery</menu-field-first-level
-    >
-    <menu-field-first-level toLink="DsObjects" :projects="[]" @btnclick="test"
-      >Objects</menu-field-first-level
-    >
-    <menu-field-first-level toLink="DsProjects" :projects="array"
-      >Project</menu-field-first-level
-    >
+    <first-level-menu title="Projects" toLink="DsProjects">
+     <template v-slot:>
+    </first-level-menu>
     <footer class="ds-left-footer">
       <m-add-devise>
         <button @click="off">Close</button>
@@ -28,36 +15,39 @@
 <script>
 import MAddDevise from "@/components/library/addDevise";
 import DropPanel from "@/components/library/dropPanel";
-import MenuFieldFirstLevel from "@/components/library/menu/field-menu-firts";
+import FirstLevelMenu from "@/components/library/menu/first-level-menu";
 import { mapActions } from "vuex";
 
 export default {
   data: () => ({
-    array: [
-      {
-        name: "Yacht FRASER",
-        fields: [
-          { title: "Device" },
-          { title: "Display" },
-          { title: "Interaction" },
-        ],
-      },
-      {
-        name: "ArtGallery",
-        fields: [
-          { title: "Device" },
-          { title: "Display" },
-          { title: "Interaction" },
-        ],
-      },
-      { name: "Space" },
-      { name: "Фото выставка город Артём" },
-    ],
+    testOblject: {
+      title: "Pojects",
+      fields: [
+        {
+          name: "Yacht FRASER",
+          fields: [
+            { title: "Device" },
+            { title: "Display" },
+            { title: "Interaction" },
+          ],
+        },
+        {
+          name: "ArtGallery",
+          fields: [
+            { title: "Device" },
+            { title: "Display" },
+            { title: "Interaction" },
+          ],
+        },
+        { name: "Space" },
+        { name: "Фото выставка город Артём" },
+      ],
+    },
   }),
   components: {
     MAddDevise,
     DropPanel,
-    MenuFieldFirstLevel,
+    FirstLevelMenu,
   },
   methods: {
     ...mapActions({
