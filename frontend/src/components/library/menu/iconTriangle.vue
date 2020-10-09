@@ -35,7 +35,7 @@ export default {
 <style lang="scss" scoped>
 $timeAnim: 300ms;
 .triangle {
-  margin-right: 16px;
+  margin-right: 10px;
   transition: transform $timeAnim linear;
   & > g > g > path.a {
     stroke: none;
@@ -46,7 +46,7 @@ $timeAnim: 300ms;
   }
 }
 .triangle-active {
-  margin-right: 16px;
+  margin-right: 10px;
   transform: rotate(90deg);
 
   & > g > g > path.a {

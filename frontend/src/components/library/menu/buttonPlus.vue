@@ -1,10 +1,18 @@
 <template>
-    <button @click="$emit('btnclick')">+</button>
+    <button @click="on">+</button>
 </template>
 
 <script>
+import {
+    mapActions
+} from "vuex";
 export default {
-
+    methods: {
+        ...mapActions({
+            on: "modWin/on",
+            off: "modWin/off",
+        }),
+    },
 };
 </script>
 <style lang="scss" scoped>

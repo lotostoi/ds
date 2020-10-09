@@ -1,112 +1,129 @@
 <template>
-<div class="ds-faild-wrapper">
+  <div class="ds-faild-wrapper">
     <div>
-        <router-link @click="open" :to="{ name: toLink }" class="ds-field" :class="borderNo" exact active-class="active">
-            <div @click="open">
-                <slot name="icon">
-                    <icon-triangle :rotate="show" />
-                </slot>
-            </div>
-            <slot name="title"></slot>
-            <slot name="button">
-                <button-plus />
-            </slot>
-        </router-link>
+      <router-link
+        v-if="toLink"
+        @click="open"
+        :to="{ name: toLink }"
+        class="ds-field"
+        :class="borderNo"
+        exact
+        active-class="active"
+      >
+        <div @click="open">
+          <slot name="icon">
+            <icon-triangle :rotate="show" />
+          </slot>
+        </div>
+        <slot name="title"></slot>
+        <slot name="button">
+          <button-plus />
+        </slot>
+      </router-link>
+      <div
+        v-else
+        @click="false"
+        class="ds-field"
+        :class="borderNo"
+ 
+      >
+        <div @click="open">
+          <slot name="icon">
+            <icon-triangle :rotate="show" />
+          </slot>
+        </div>
+        <slot name="title"></slot>
+        <slot name="button">
+          <button-plus />
+        </slot>
+      </div>
     </div>
     <div class="fields">
-        <slot> </slot>
+      <slot> </slot>
     </div>
-</div>
+  </div>
 </template>
 
 <script>
-//import FieldMenuSecondLevel from "@/components/library/menu/field-menu-second";
 import IconTriangle from "@/components/library/menu/iconTriangle";
 import ButtonPlus from "@/components/library/menu/buttonPlus";
 
 let delay = async (delay = 0) =>
-    new Promise((resolve) => {
-        setTimeout(() => resolve(), delay);
-    });
+  new Promise((resolve) => {
+    setTimeout(() => resolve(), delay);
+  });
 
 export default {
-    props: {
-        toLink: {
-            type: String,
-            required: true,
-        },
-        borderNo: {
-            type: String,
-        },
+  props: {
+    toLink: {
+      type: String,
+      required: true,
     },
-    data: () => ({
-        show: false,
-        delay: 500,
-        flag: false,
-    }),
-    components: {
-        IconTriangle,
-        ButtonPlus,
+    borderNo: {
+      type: String,
     },
-    methods: {
-        open() {
-            if (this.$el.querySelector(".fields").innerHTML !== "" && !this.flag) {
-                this.show = !this.show;
-            }
-        },
+  },
+  data: () => ({
+    show: false,
+    delay: 500,
+    flag: false,
+    height: 0,
+  }),
+  components: {
+    IconTriangle,
+    ButtonPlus,
+  },
+  methods: {
+    open() {
+      let content = this.$el.querySelector(".fields > div").innerHTML;
+      if (!this.flag && content) {
+        this.show = !this.show;
+      }
     },
-    watch: {
-        async show() {
-            if (this.flag) return;
+  },
+  watch: {
+    async show() {
+      if (this.flag) return;
 
-            this.flag = true;
-            let el = this.$el.querySelector(".fields");
-            let height;
-            if (!el.tagName) return;
-            if (this.show && el.tagName) {
-                await Promise.resolve(
-                    (el.style.height = "auto") && el.classList.add("forMeasuring")
-                );
-                await delay(10);
-                height = el.clientHeight;
-                console.log(height);
-                await Promise.resolve(
-                    (el.style.height = `0`) && el.classList.remove("forMeasuring")
-                );
-                await delay(10);
-                el.style.transition = `height ${this.delay}ms`;
-                await delay(10);
-                el.style.height = `${height}px`;
-                await delay(this.delay + 10);
-                el.style.height = `auto`;
-                this.flag = false;
-            } else {
-                height = el.clientHeight;
-                await Promise.resolve((el.style.height = `${height}px`));
-                await delay(10);
-                el.style.height = `0`;
-                await delay(this.delay + 10);
-                el.style.transition = `height ${0}ms`;
-                this.flag = false;
-            }
-        },
+      this.flag = true;
+      let el = this.$el.querySelector(".fields");
+      let height;
+      if (!el.tagName) return;
+      if (this.show && el.tagName) {
+        await Promise.resolve(
+          (el.style.height = "auto") && el.classList.add("forMeasuring")
+        );
+        await delay(10);
+        this.height = height = el.clientHeight;
+        console.log(height);
+        await Promise.resolve(
+          (el.style.height = `0`) && el.classList.remove("forMeasuring")
+        );
+        await delay(10);
+        el.style.transition = `height ${this.delay}ms`;
+        await delay(10);
+        el.style.height = `${height}px`;
+        await delay(this.delay + 10);
+        el.style.height = `auto`;
+        this.flag = false;
+      } else {
+        this.height = height = el.clientHeight;
+        await Promise.resolve((el.style.height = `${height}px`));
+        await delay(10);
+        el.style.height = `0`;
+        await delay(this.delay + 10);
+        el.style.transition = `height ${0}ms`;
+        this.flag = false;
+      }
     },
+  },
 
-    computed: {
-        border() {
-            return this.borderNo === "top" ?
-                "top" :
-                this.borderNo === "bot" ?
-                "bot" :
-                this.borderNo === "left" ?
-                "left" :
-                this.borderNo === "right" ?
-                "right" :
-                this.borderNo === "all" ?
-                "all" :
-                "";
-        },
+  computed: {
+    border() {
+      let classes = ["top", "bottom", "left", "right", "all"];
+      return classes.filter((cl) => this.borderNo.includes(cl)).split(" ");
     },
+  },
 };
 </script>
 
@@ -114,64 +131,82 @@ export default {
 $timeAnim: 300ms;
 
 .ds-faild-wrapper {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }
 
 .ds-field {
-    height: 50px;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    border: 1px solid transparent;
-    box-sizing: border-box;
-    color: #a5a5a5;
-    padding: 10px;
-    text-decoration: none;
+  height: 50px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  border: 1px solid transparent;
+  box-sizing: border-box;
+  color: #a5a5a5;
+  padding: 10px;
+  text-decoration: none;
+  &.top {
+    border-top: none;
+  }
 
-    &>&:hover {
-        background-color: rgb(41, 40, 40);
+  &.bot {
+    border-bottom: none;
+  }
+
+  &.left {
+    border-left: none;
+  }
+
+  &.right {
+    border-right: none;
+  }
+
+  &.all {
+    border: none;
+  }
+
+  & > &:hover {
+    background-color: rgb(41, 40, 40);
+  }
+
+  &.active {
+    border: 1px solid black;
+    color: rgb(250, 201, 111);
+    &.top {
+      border-top: none;
     }
 
-    &.active {
-        border: 1px solid black;
-        color: rgb(250, 201, 111);
-
-        &.top {
-            border-top: none;
-        }
-
-        &.bot {
-            border-bottom: none;
-        }
-
-        &.left {
-            border-left: none;
-        }
-
-        &.right {
-            border-right: none;
-        }
-
-        &.all {
-            border: none;
-        }
+    &.bot {
+      border-bottom: none;
     }
+
+    &.left {
+      border-left: none;
+    }
+
+    &.right {
+      border-right: none;
+    }
+
+    &.all {
+      border: none;
+    }
+  }
 }
 
 .fields {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    overflow: hidden;
-    height: 0;
-    // border-bottom: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  overflow: hidden;
+  height: 0;
+  // border-bottom: 1px solid black;
 }
 
 .forMeasuring {
-    position: absolute;
-    visibility: hidden;
-    height: auto;
+  position: absolute;
+  visibility: hidden;
+  height: auto;
 }
 </style>

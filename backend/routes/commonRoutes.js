@@ -5,8 +5,14 @@ const router = Router()
 
 router.get('*', (req, res) =>
 {
-
-  res.sendFile(getLink(req.path))
+  if (req.path.includes('files')) {
+    console.log('dd');
+    res.sendFile(getLink(req.path))
+  }
+  else {
+    console.log(req.path);
+    res.end(req.path)
+  }
 })
 
 module.exports = router

@@ -8,6 +8,7 @@ import DsContent from '@/components/library/content'
 import DsProjects from '@/components/library/projects'
 import DsGallery from '@/components/library/gallery'
 import DsObjects from '@/components/library/objects'
+import DsPlug from '@/components/library/plug'
 
 
 Vue.use(VueRouter)
@@ -36,6 +37,15 @@ const routes = [
         name: 'DsObjects',
         path: '/controll/objects',
         component: DsObjects
+      },
+      {
+        name: 'DsPlug',
+        path: '/control/plug',
+        component: DsPlug
+      },
+      {
+        path: '*',
+        redirect: { name: 'DsPlug' },
       },
     ]
   },
