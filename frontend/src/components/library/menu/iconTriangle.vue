@@ -1,12 +1,12 @@
 <template>
+  <div class="cont-icon">
     <svg
       width="13.516"
       height="15.446"
       viewBox="0 0 13.516 15.446"
       class="triangle"
-      :class="rotate ? 'triangle-active' : ''"
+      :class="currentClass"
     >
-      {{ rotate }}
       <g transform="translate(1 1.723)">
         <g transform="translate(10.5) rotate(90)">
           <path
@@ -20,41 +20,94 @@
         </g>
       </g>
     </svg>
+  </div>
 </template>
 
 <script>
 export default {
   props: {
-      rotate:{
-          type: Boolean,
-          default: false
-      }
-  }
+    rotate: {
+      type: String,
+      default: "block",
+    },
+  },
+  computed: {
+    currentClass() {
+      return this.rotate === "show"
+        ? "triangle-active"
+        : this.rotate === "default"
+        ? "triangle"
+        : "triangle-block";
+    },
+  },
 };
 </script>
 <style lang="scss" scoped>
 $timeAnim: 300ms;
-.triangle {
-  margin-right: 10px;
-  transition: transform $timeAnim linear;
-  & > g > g > path.a {
-    stroke: none;
-    transition: fill $timeAnim linear;
+.cont-icon {
+  padding: 5px 10px 5px 5px;
+  .triangle {
+    transition: transform $timeAnim linear;
+    & > g > g > path.a {
+      stroke: none;
+      transition: fill $timeAnim linear;
+    }
+    & > g > g > path.b {
+      fill: #505050;
+    }
   }
-  & > g > g > path.b {
-    fill: #505050;
-  }
-}
-.triangle-active {
-  margin-right: 10px;
-  transform: rotate(90deg);
+  .triangle-active {
+    transform: rotate(90deg);
 
-  & > g > g > path.a {
-    stroke: none;
-    fill: #505050;
+    & > g > g > path.a {
+      stroke: none;
+      fill: #505050;
+    }
+    & > g > g > path.b {
+      fill: #505050;
+    }
   }
-  & > g > g > path.b {
-    fill: #505050;
+  .triangle-block {
+    & > g > g > path.a {
+      stroke: none;
+      fill: #5050503d;
+    }
+    & > g > g > path.b {
+      fill: #5050505d;
+    }
+  }
+  &:hover {
+    .triangle {
+      transition: transform $timeAnim linear;
+      & > g > g > path.a {
+        stroke: none;
+        fill: #e68953;
+        transition: fill $timeAnim linear;
+      }
+      & > g > g > path.b {
+        fill: #505050;
+      }
+    }
+    .triangle-active {
+      transform: rotate(90deg);
+
+      & > g > g > path.a {
+        stroke: none;
+        fill: #e68953;
+      }
+      & > g > g > path.b {
+        fill: #505050;
+      }
+    }
+    .triangle-block {
+      & > g > g > path.a {
+        stroke: none;
+        fill: #5050503d;
+      }
+      & > g > g > path.b {
+        fill: #5050505d;
+      }
+    }
   }
 }
 </style>

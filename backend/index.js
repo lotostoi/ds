@@ -1,6 +1,6 @@
 
 
-const PORT = 3888
+const PORT = 3000
 
 const isProd = process.isProduction
 

@@ -61,10 +61,10 @@ export default {
 
 ::-webkit-scrollbar {
   width: 1px !important;
-  /* ширина для вертикального скролла */
+
   height: 8px;
-  /* высота для горизонтального скролла */
-  background-color: #130b0a;
+
+  background-color: $baseColor;
 }
 
 .ds-left {

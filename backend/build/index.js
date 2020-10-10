@@ -187,7 +187,7 @@ module.exports = require("image-size");
 
 
 
-const PORT = 3888
+const PORT = 3000
 
 const isProd = true
 
@@ -270,14 +270,13 @@ const { getLink } = __webpack_require__(5)
 const { Router } = __webpack_require__(0)
 const router = Router()
 
-router.get('*', (req, res) =>
-{
+router.get('*', (req, res) => {
   if (req.path.includes('files')) {
-    console.log('dd');
+
     res.sendFile(getLink(req.path))
   }
   else {
-    console.log(req.path);
+
     res.end(req.path)
   }
 })

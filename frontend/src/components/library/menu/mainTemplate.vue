@@ -1,42 +1,28 @@
 <template>
   <div class="ds-faild-wrapper">
-    <div>
+    <div class="ds-field">
+      <div @click="open">
+        <slot name="icon">
+          <icon-triangle :rotate="rotate" />
+        </slot>
+      </div>
       <router-link
         v-if="toLink"
         @click="open"
         :to="{ name: toLink }"
-        class="ds-field"
-        :class="borderNo"
+        class="ds-field-link"
         exact
         active-class="active"
       >
-        <div @click="open">
-          <slot name="icon">
-            <icon-triangle :rotate="show" />
-          </slot>
-        </div>
         <slot name="title"></slot>
-        <slot name="button">
-          <button-plus />
-        </slot>
       </router-link>
-      <div
-        v-else
-        @click="false"
-        class="ds-field"
-        :class="borderNo"
- 
-      >
-        <div @click="open">
-          <slot name="icon">
-            <icon-triangle :rotate="show" />
-          </slot>
-        </div>
+      <div v-else class="title">
         <slot name="title"></slot>
-        <slot name="button">
-          <button-plus />
-        </slot>
       </div>
+
+      <slot name="button">
+        <button-plus />
+      </slot>
     </div>
     <div class="fields">
       <slot> </slot>
@@ -65,13 +51,16 @@ export default {
   },
   data: () => ({
     show: false,
-    delay: 500,
+    content: null,
+    delay: 400,
     flag: false,
-    height: 0,
   }),
   components: {
     IconTriangle,
     ButtonPlus,
+  },
+  mounted() {
+    this.content = this.$el.querySelector(".fields > div").innerHTML;
   },
   methods: {
     open() {
@@ -80,38 +69,45 @@ export default {
         this.show = !this.show;
       }
     },
+    calcDelay(height) {
+      if (height < 300) return this.delay;
+      if (height > 300 && height < 600) return 1.5 * this.delay;
+      if (height > 600 && height < 900) return 2 * this.delay;
+      if (height > 900) return 3 * this.delay;
+    },
   },
   watch: {
     async show() {
       if (this.flag) return;
-
       this.flag = true;
       let el = this.$el.querySelector(".fields");
       let height;
+
       if (!el.tagName) return;
       if (this.show && el.tagName) {
         await Promise.resolve(
           (el.style.height = "auto") && el.classList.add("forMeasuring")
         );
         await delay(10);
-        this.height = height = el.clientHeight;
-        console.log(height);
+        height = el.clientHeight;
         await Promise.resolve(
           (el.style.height = `0`) && el.classList.remove("forMeasuring")
         );
         await delay(10);
-        el.style.transition = `height ${this.delay}ms`;
-        await delay(10);
+        el.style.transition = `height ${this.calcDelay(height)}ms`;
+        await delay(100);
         el.style.height = `${height}px`;
-        await delay(this.delay + 10);
+        await delay(this.calcDelay(height) + 10);
         el.style.height = `auto`;
         this.flag = false;
       } else {
-        this.height = height = el.clientHeight;
+        height = el.clientHeight;
+
+        el.style.transition = `height ${this.calcDelay(height)}ms`;
         await Promise.resolve((el.style.height = `${height}px`));
         await delay(10);
         el.style.height = `0`;
-        await delay(this.delay + 10);
+        await delay(this.calcDelay(height) + 10);
         el.style.transition = `height ${0}ms`;
         this.flag = false;
       }
@@ -119,6 +115,15 @@ export default {
   },
 
   computed: {
+    rotate() {
+      if (this.content && this.show) {
+        return "show";
+      } else if (this.content) {
+        return "default";
+      } else {
+        return "block";
+      }
+    },
     border() {
       let classes = ["top", "bottom", "left", "right", "all"];
       return classes.filter((cl) => this.borderNo.includes(cl)).split(" ");
@@ -146,6 +151,7 @@ $timeAnim: 300ms;
   color: #a5a5a5;
   padding: 10px;
   text-decoration: none;
+
   &.top {
     border-top: none;
   }
@@ -167,12 +173,13 @@ $timeAnim: 300ms;
   }
 
   & > &:hover {
-    background-color: rgb(41, 40, 40);
+    // background-color: rgb(41, 40, 40);
   }
 
   &.active {
     border: 1px solid black;
     color: rgb(250, 201, 111);
+
     &.top {
       border-top: none;
     }
@@ -193,6 +200,22 @@ $timeAnim: 300ms;
       border: none;
     }
   }
+}
+
+.ds-field-link {
+  color: #a5a5a5;
+  text-decoration: none;
+  display: flex;
+  text-align: left;
+  justify-content: flex-start;
+
+  &.active {
+    color: rgb(250, 201, 111);
+  }
+}
+
+.title {
+  display: flex;
 }
 
 .fields {
