@@ -1,15 +1,18 @@
 <template>
   <header class="header">
     <div class="ds-logo">
-      <img  src="./../assets/logo.png" alt />
+      <img src="./../assets/logo.png" alt />
     </div>
     <nav class="ds-nav">
-      <router-link :to="{name: 'aboutProject'}" active-class="active" exact>About Project</router-link>
-      <router-link :to="{name: 'DsContent'}" active-class="active">Controll</router-link>
-      
+      <router-link :to="{ name: 'aboutProject' }" active-class="active" exact
+        >About Project</router-link
+      >
+      <router-link :to="{ name: 'DsContent' }" active-class="active"
+        >Controll</router-link
+      >
     </nav>
     <div class="userMame">
-      <router-link to="#">{{name}}</router-link>
+      <router-link to="#">{{ name }}</router-link>
     </div>
   </header>
 </template>
@@ -18,9 +21,9 @@
 export default {
   data() {
     return {
-      name: "Alexander Plotnikov"
+      name: "Alexander Plotnikov",
     };
-  }
+  },
 };
 </script>
 
@@ -37,7 +40,7 @@ export default {
 
 .ds-logo {
   display: flex;
-  transition: transform .3 linear;
+  transition: transform 0.3 linear;
   &:hover {
     transform: scale(1.1);
   }
@@ -54,13 +57,13 @@ export default {
   & > a {
     text-decoration: none;
     margin: 0 10px;
-    color: white;
+    color: $fontColor;
   }
   & > a.active {
-    color: rgb(250, 201, 111);;
+    color: $textActive;
   }
   & > a:hover {
-    color: rgb(248, 71, 17);
+    color: $textHover;
   }
 }
 

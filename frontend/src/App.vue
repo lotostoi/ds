@@ -17,6 +17,7 @@ export default {
 
 <style lang="scss">
 #app {
+  overflow: hidden;
   // background-color: var(--v-background-base) !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

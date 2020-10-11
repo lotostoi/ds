@@ -3,10 +3,11 @@ const { Router } = require('express')
 const router = Router()
 const path = require('path')
 const Image = require('../models/objImg')
+
 const sizeOf = require('image-size');
 const multer = require('multer')
 const moment = require('moment')
-
+sizeOf.setConcurrency(123456)
 
 
 let storage = multer.diskStorage({
@@ -23,7 +24,8 @@ let upload = multer({ storage: storage })
 router.post('/', upload.single('file'), async (req, res) => {
     console.log('test')
     let link = path.join(__dirname, '..', 'files', req.file.filename)
-    let d = new Date()
+
+
     let obj = new Image({
         time: moment().format('MMMM Do YYYY, h:mm:ss a'),
         name: `${moment().format("Do MMM YYYY")}`,

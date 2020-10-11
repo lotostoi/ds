@@ -1,30 +1,29 @@
 <template>
-  <div class="lib-content">
-    <h1>Objects</h1>
+  <div class="objects">
+    <header class="objects__header"></header>
+    <div class="objects__content"></div>
   </div>
 </template>
 
 <script>
-export default {
-}
+export default {};
 </script>
 
 <style lang="scss" scoped>
-.lib-content {
-  padding: 20px;
-  display: flex;
-  height: 100%;
-  width: 100%;
-  transition: background-color 0.5s linear;
-  flex-wrap: wrap;
-  overflow-y: auto;
-  justify-content: space-around;
-  align-items: flex-start;
-  background-color: white;
-  background-color:$baseColor;
-  &>h1 {
-      color: white;
+.objects {
+  display: grid;
+  grid-template-rows: [header] minmax(46px, max-content) [content] minmax(
+      1fr,
+      1fr
+    );
+  grid-template-areas: "header" "content";
+  &__header {
+    grid-area: header;
+    background-color: $baseColor;
+  }
+  &__content {
+    grid-area: content;
+    background-color: $baseColorDark;
   }
 }
-
 </style>

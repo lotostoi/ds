@@ -70,8 +70,8 @@ export default {
       }
     },
     calcDelay(height) {
-      if (height < 300) return this.delay;
-      if (height > 300 && height < 600) return 1.5 * this.delay;
+      if (height < 300) return 0.5 * this.delay;
+      if (height > 300 && height < 600) return 1 * this.delay;
       if (height > 600 && height < 900) return 2 * this.delay;
       if (height > 900) return 3 * this.delay;
     },
@@ -149,7 +149,7 @@ $timeAnim: 300ms;
   border: 1px solid transparent;
   box-sizing: border-box;
   color: #a5a5a5;
-  padding: 10px;
+  padding: 10px 10px 10px 5px;
   text-decoration: none;
 
   &.top {
@@ -172,13 +172,13 @@ $timeAnim: 300ms;
     border: none;
   }
 
-  & > &:hover {
-    // background-color: rgb(41, 40, 40);
+  &:hover {
+    color: $textHover;
   }
 
   &.active {
     border: 1px solid black;
-    color: rgb(250, 201, 111);
+    color: $textActive;
 
     &.top {
       border-top: none;
@@ -209,8 +209,11 @@ $timeAnim: 300ms;
   text-align: left;
   justify-content: flex-start;
 
+  &:hover {
+    color: $textHover;
+  }
   &.active {
-    color: rgb(250, 201, 111);
+    color: $textActive;
   }
 }
 

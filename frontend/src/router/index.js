@@ -9,7 +9,7 @@ import DsProjects from '@/components/library/projects'
 import DsGallery from '@/components/library/gallery'
 import DsObjects from '@/components/library/objects'
 import DsPlug from '@/components/library/plug'
-
+import DsDashboard from '@/components/library/dashboard'
 
 Vue.use(VueRouter)
 
@@ -26,12 +26,24 @@ const routes = [
       {
         name: 'DsProjects',
         path: '/controll/projects',
-        component: DsProjects
+        component: DsProjects,
+        children: [
+          {
+            name: 'DsPlug',
+            path: '/controll/projects',
+            component: DsPlug
+          },
+        ]
       },
       {
         name: 'DsGallery',
         path: '/controll/gallery',
         component: DsGallery
+      },
+      {
+        name: 'DsDashboard',
+        path: '/controll/dashboard',
+        component: DsDashboard
       },
       {
         name: 'DsObjects',
@@ -40,7 +52,7 @@ const routes = [
       },
       {
         name: 'DsPlug',
-        path: '/control/plug',
+        path: '/controll/plug',
         component: DsPlug
       },
       {

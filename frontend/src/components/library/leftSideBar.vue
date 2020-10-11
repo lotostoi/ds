@@ -1,20 +1,21 @@
 <template>
   <div class="ds-left">
-    <first-level-menu
-      :borderNo="'left right top'"
-      title="Files"
-      toLink="DsContent"
-    ></first-level-menu>
-    <first-level-menu
-      :borderNo="'left right top'"
-      title="Gallery"
-      toLink="DsGallery"
-    ></first-level-menu>
-    <first-level-menu
-      :borderNo="'left right top'"
-      title="Objects"
-      toLink="DsObjects"
-    ></first-level-menu>
+    <router-link
+      :to="{ name: 'DsDashboard' }"
+      class="ds-left__fieldMenu"
+      exact
+      active-class="ds-left__fieldMenu-active"
+    >
+      <i class="fa fa-qrcode" aria-hidden="true"></i> Dashboard
+    </router-link>
+    <router-link
+      :to="{ name: 'DsContent' }"
+      class="ds-left__fieldMenu"
+      exact
+      active-class="ds-left__fieldMenu-active"
+    >
+      <i class="fa fa-file-image-o" aria-hidden="true"></i> Files
+    </router-link>
     <projects />
     <m-add-devise>
       <button @click="off">Close</button>
@@ -68,12 +69,33 @@ export default {
 }
 
 .ds-left {
+  overflow-x: hidden;
   display: flex;
   min-width: 300px;
   border-right: 1px solid #000;
   flex-direction: column;
   justify-content: flex-start;
   overflow: auto;
+  &__fieldMenu {
+    padding: 10px 10px 10px 5px;
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    text-decoration: none;
+    color: $fontColor;
+    box-sizing: border-box;
+    &:hover {
+      color: $textHover;
+    }
+    & > i {
+      padding: 10px;
+    }
+  }
+  &__fieldMenu-active {
+    color: $textActive;
+  }
 }
 
 .ds-left-footer {

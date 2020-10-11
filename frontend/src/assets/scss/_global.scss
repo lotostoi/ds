@@ -10,13 +10,20 @@ body {
 }
 
 // fon's color
-$baseColor: #202020;
+$baseColor    : #202020;
+$baseColorDark:#131313;
 
 // font's color 
 
 $fontColor: rgb(179, 179, 179);
 
-$textHover: orange;
+$textHover :white;
+
+$textActive:rgb(223, 221, 221);
+
+// borders
+
+$borderDark: #000000;
 
 // button's color
 
@@ -45,7 +52,7 @@ $heightFooter: 55px;
 
   width           : 0px;
   /* ширина для вертикального скролла */
-  height          : 8px;
+  height          : 0px;
   /* высота для горизонтального скролла */
   background-color: $baseColor;
 }
@@ -97,3 +104,8 @@ $heightFooter: 55px;
 }
 
 //  end global variables and styles ************************  *///
+
+
+.progress {
+  background-color: $baseColor !important;
+}

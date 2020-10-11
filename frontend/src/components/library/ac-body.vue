@@ -38,8 +38,6 @@ export default {
   flex-direction: column;
   width: 100%;
   max-width: 100%;
-  transition: background-color 0.5s linear;
-
   align-items: flex-start;
 }
 
@@ -99,30 +97,9 @@ export default {
 .lib-content-cont {
   display: flex;
   flex-direction: column;
-  height: calc(100% - 100px);
+  align-items: flex-start;
   width: 100%;
-  background-color: rgb(65, 51, 51);
-}
-
-.lib-body-footer {
-  width: 100%;
-  display: flex;
-  padding: 0 20px;
-  min-height: 50px;
-  border-top: 1px solid black;
-  align-items: center;
-}
-
-.changeScale {
-  display: flex;
-  margin-left: auto;
-
-  & > label {
-    color: $fontColor;
-  }
-
-  & > input {
-    margin-left: 10px;
-  }
+  height: 100%;
+  background-color: #131313;
 }
 </style>

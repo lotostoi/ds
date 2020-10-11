@@ -1,14 +1,13 @@
 <template>
   <div class="page-content">
-    <h3 class="page-content__h3">Progects</h3>
+    <h3 class="page-content__h3">Welcome 3DMark</h3>
     <div class="page-content__content">
       <nav class="page-content__nav">
         <a href="#">Yacht FRASER</a>
         <a href="#">ArtGallery</a>
         <a href="#">Space</a>
         <a href="#">Фото выставка город Артём</a>
-        <input type="text" placeholder="Project's name" v-model="value" />
-        <button :disabled="true" :class="currentClass">
+        <button>
           <span>Добавить проект</span>
           <span>+</span>
         </button>
@@ -18,19 +17,7 @@
 </template>
 
 <script>
-export default {
-  data: () => ({
-    value: "",
-  }),
-  computed: {
-    valid() {
-      return /^[A-zА-я0-9_\- ]{2,30}$/gi.test(this.value);
-    },
-    currentClass() {
-      return this.valid ? "active" : " disabled";
-    },
-  },
-};
+export default {};
 </script>
 
 <style lang="scss" scoped>
@@ -79,21 +66,7 @@ export default {
         color: $textActive;
       }
     }
-    & > input {
-      width: 244px;
-      margin: 7px 0;
-      display: flex;
-      align-items: center;
-      max-width: 244px;
-      min-height: 30px;
-      background-color: #161616;
-      border: 1px solid #000000;
-      color: $fontColor;
-      padding: 0 15px;
-      outline: none;
-      justify-content: space-between;
-    }
-    & > .active {
+    & > bUtton {
       margin: 7px 0;
       display: flex;
       align-items: center;
@@ -106,31 +79,10 @@ export default {
       outline: none;
       justify-content: space-between;
       &:hover {
-        border: 1px solid #47474754;
-        background-color: rgb(36, 35, 35);
+        border: 1px solid #7a7a7a;
       }
       &:active {
         transform: scale(0.98);
-      }
-    }
-    & > .disabled {
-      margin: 7px 0;
-      display: flex;
-      align-items: center;
-      max-width: 244px;
-      min-height: 30px;
-      background-color: #5555552a;
-      border: 1px solid #00000059;
-      color: rgba(128, 128, 128, 0.472);
-      padding: 0 15px;
-      outline: none;
-      cursor: not-allowed;
-      justify-content: space-between;
-      &:hover {
-        border: 1px solid #00000059;
-      }
-      &:active {
-        transform: scale(1);
       }
     }
   }
