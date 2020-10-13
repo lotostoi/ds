@@ -20,7 +20,7 @@ const getImgRoutes = require('./routes/getImg')
 
 const delByIdRoutes = require('./routes/delById')
 
-const addDeviceRoutes = require('./routes/addDevice')
+const projectsRoutes = require('./routes/projects')
 
 const bodyParser = require('body-parser')
 
@@ -38,13 +38,15 @@ app.use(express.static(path.join(__dirname, 'img')));
 
 app.use(bodyParser.urlencoded({ extended: false }));
 
+app.use(bodyParser.json())
+
 app.use(delByIdRoutes)
 
 app.use('/rout/getPhoto', getImgRoutes)
 
 app.use('/rout/files', picturesRoutes)
 
-app.use('/rout/addDevise', addDeviceRoutes)
+app.use('/rout', projectsRoutes)
 
 app.use(commonRoutes)
 
@@ -64,7 +66,6 @@ async function start() {
     }
 
 }
-
 
 start()
 

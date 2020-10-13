@@ -1,11 +1,8 @@
 const { Router } = require('express')
 const router = Router()
-const path = require('path')
 const Image = require('../models/objImg')
-const fs = require("fs")
-
 const { delImg } = require('../models/functions')
-const { connected } = require('process')
+
 
 
 router.delete('/rout/del/:id', async (request, respons) => {
@@ -32,10 +29,10 @@ router.delete('/rout/del/:id', async (request, respons) => {
     }
 
     try {
-   
+
         // deleteing file of image
         await delImg(images[index].linkBack)
-       
+
         respons.json({ status: 'Succes' })
     }
     catch (err) {

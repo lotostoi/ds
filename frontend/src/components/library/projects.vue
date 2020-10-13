@@ -8,7 +8,11 @@
         <a href="#">Space</a>
         <a href="#">Фото выставка город Артём</a>
         <input type="text" placeholder="Project's name" v-model="value" />
-        <button :disabled="true" :class="currentClass">
+        <button
+          :disabled="!valid"
+          :class="currentClass"
+          @click="addProject(value)"
+        >
           <span>Добавить проект</span>
           <span>+</span>
         </button>
@@ -18,10 +22,19 @@
 </template>
 
 <script>
+import { createLogger, mapActions } from "vuex";
 export default {
   data: () => ({
     value: "",
   }),
+  methods: {
+    ...mapActions({
+      addProject: "menuProjects/addProject",
+    }),
+    test() {
+      console.log("sdfsdf");
+    },
+  },
   computed: {
     valid() {
       return /^[A-zА-я0-9_\- ]{2,30}$/gi.test(this.value);

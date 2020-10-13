@@ -1,11 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
-import { prefixForProxy } from "@/addtools/globalVar"
-
 Vue.use(Vuex)
-
-
 
 import progresBar from "@/store/progresBar"
 
@@ -13,8 +9,9 @@ import libScale from "@/store/library/scale"
 import libPictures from "@/store/library/pictures"
 import libImageDetails from "@/store/library/imageDetails.js"
 import libSelected from "@/store/library/selected"
+import menuProjects from "@/store/menu-projects/menuProjects"
 
-import colAddDevise from "@/store/collections/addRoutToDevise"
+
 import modWin from "@/store/mod-win"
 
 export default new Vuex.Store({
@@ -39,7 +36,10 @@ export default new Vuex.Store({
     libSelected,
 
     // module for modal-window
-    modWin
+    modWin,
+
+    //
+    menuProjects
 
   },
 

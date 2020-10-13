@@ -1,13 +1,13 @@
 module.exports = {
-    css: {
-        loaderOptions: {
-            scss: {
-                data: `@import "@/assets/scss/_global.scss";`
-            },
+	css: {
+		loaderOptions: {
+			scss: {
+				additionalData: `@import "~@/assets/scss/global.scss";`
+			},
 
-        }
-    },
-    configureWebpack: (config) => {
+		}
+	},
+	configureWebpack: (config) => {
 		return {
 			devServer: {
 				proxy: {

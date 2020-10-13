@@ -3,7 +3,7 @@ const { Router } = require('express')
 const router = Router()
 const path = require('path')
 const Image = require('../models/objImg')
-
+const ExifImage = require('exif').ExifImage;
 const sizeOf = require('image-size');
 const multer = require('multer')
 const moment = require('moment')
@@ -22,9 +22,18 @@ let storage = multer.diskStorage({
 let upload = multer({ storage: storage })
 
 router.post('/', upload.single('file'), async (req, res) => {
-    console.log('test')
-    let link = path.join(__dirname, '..', 'files', req.file.filename)
 
+    let link = path.join(__dirname, '..', 'files', req.file.filename)
+    try {
+        new ExifImage({ image: link }, function (error, exifData) {
+            if (error)
+                console.log('Error: ' + error.message);
+            else
+                console.log(exifData); // Do something with your data!
+        });
+    } catch (error) {
+        console.log('Error: ' + error.message);
+    }
 
     let obj = new Image({
         time: moment().format('MMMM Do YYYY, h:mm:ss a'),

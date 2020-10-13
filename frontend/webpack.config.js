@@ -1,4 +1,4 @@
-const webpack = require('webpack');
+/* const webpack = require('webpack');
 module.exports = {
     rules: [
       {
@@ -27,8 +27,8 @@ module.exports = {
       },
     ],
     plugins: [
-      new webpack.DefinePlugin({     
+      new webpack.DefinePlugin({
         'process.isProduction': isProduction
       })
     ]
-  }
+  } */
