@@ -9,9 +9,9 @@
       <router-link
         v-if="toLink"
         @click="open"
-        :to="{ name: toLink }"
+        :to="!toLink.includes('\/') ? { name: toLink }: toLink"
         class="ds-field-link"
-        exact
+     
         active-class="active"
       >
         <slot name="title"></slot>
@@ -48,10 +48,14 @@ export default {
     borderNo: {
       type: String,
     },
+    content: {
+      type: Boolean,
+      default: false,
+    },
   },
   data: () => ({
     show: false,
-    content: null,
+    //  content: null,
     delay: 400,
     flag: false,
   }),
@@ -59,13 +63,10 @@ export default {
     IconTriangle,
     ButtonPlus,
   },
-  mounted() {
-    this.content = this.$el.querySelector(".fields > div").innerHTML;
-  },
   methods: {
     open() {
-      let content = this.$el.querySelector(".fields > div").innerHTML;
-      if (!this.flag && content) {
+     
+      if (!this.flag && this.content) {
         this.show = !this.show;
       }
     },

@@ -1,46 +1,47 @@
 export default (title) => ({
     title: title,
-    link: 'DsPlug',
+    link: `/controll/projects/${title}`,
     fields: [
         {
-            title: 'Objects',
-            link: 'DsObjects',
+            title: 'OBJECT',
+            link: `/controll/projects/${title}/objects`,
             fields: [
                 {
                     title: 'Single',
-                    link: '',
-                    fields: []
+                    fields: [],
+                    link: `/controll/projects/${title}/objects/single`,
                 },
                 {
                     title: 'Slider',
-                    link: '',
-                    fields: []
+                    fields: [],
+                    link: `/controll/projects/${title}/objects/slider`,
                 },
                 {
                     title: 'Gallery',
-                    link: '',
-                    fields: []
+                    fields: [],
+                    link: `/controll/projects/${title}/objects/gallery`,
                 },
                 {
                     title: 'Web page',
-                    link: '',
-                    fields: []
+                    fields: [],
+                    link: `/controll/projects/${title}/objects/webpage`,
                 },
             ]
-
-
         },
         {
             title: 'DEVICE',
-            link: 'DsPlug'
+            link: `/controll/projects/${title}/device`,
+            fields: [],
         },
         {
             title: 'DISPLAY',
-            link: 'DsPlug'
+            link: `/controll/projects/${title}/display`,
+            fields: [],
         },
         {
             title: 'Playlist+inetraction',
-            link: 'DsPlug'
+            link: `/controll/projects/${title}/playlist`,
+            fields: [],
         }
     ]
 });

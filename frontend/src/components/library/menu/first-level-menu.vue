@@ -1,5 +1,5 @@
 <template>
-<main-template-menu :borderNo="borderNo" :toLink="toLink">
+<main-template-menu :borderNo="borderNo" :toLink="toLink" :content="content">
     <template v-slot:title>{{ title }}</template>
     <div>
         <slot></slot>
@@ -24,6 +24,10 @@ export default {
         },
         borderNo: {
             type: String,
+        },
+        content: {
+            type: Boolean,
+            default: false
         },
     },
     components: {

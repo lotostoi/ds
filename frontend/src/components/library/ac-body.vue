@@ -39,6 +39,7 @@ export default {
   width: 100%;
   max-width: 100%;
   align-items: flex-start;
+  overflow: hidden;
 }
 
 .lib-body-header {

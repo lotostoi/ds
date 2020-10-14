@@ -3,7 +3,13 @@
     <lib-left-side-bar></lib-left-side-bar>
 
     <lib-body>
-      <router-view></router-view>
+      <transition
+        enter-active-class="sl-enter"
+        leave-active-class="sl-leave"
+        mode="out-in"
+      >
+        <router-view></router-view>
+      </transition>
     </lib-body>
 
     <lib-right-side-bar></lib-right-side-bar>

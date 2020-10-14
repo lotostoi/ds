@@ -1,5 +1,5 @@
 <template>
-<main-template-menu :borderNo="borderNo" :toLink="toLink" class="second">
+<main-template-menu :borderNo="borderNo" :toLink="toLink" :content="content" class="second">
     <template v-slot:title>{{ title }}</template>
     <template v-slot:button><img src="@/assets/img/icons/settings_icon.svg" alt="" /></template>
     <div>
@@ -26,6 +26,10 @@ export default {
         borderNo: {
             type: String,
         },
+          content: {
+            type: Boolean,
+            default: false
+        },
     },
     components: {
         MainTemplateMenu,
@@ -36,7 +40,7 @@ export default {
 
 <style lang="scss" scoped>
 .second {
-    padding-left: 10px;
+    padding-left: 7px;
     box-sizing: border-box;
 }
 

@@ -27,8 +27,9 @@
       @click="delSel($event)"
     >
       <div class="lib-cont-img" v-for="img in pictures" :key="img._id">
-        <div
+        <drag
           v-if="img.show"
+          :transfer-data="{ example: img }"
           :style="`height:${100 + 2 * range + 0.5}px; width:${
             (100 + 2 * range) * img.k
           }px`"
@@ -46,7 +47,7 @@
             draggable="true"
             @click="clickImg($event, img._id)"
           />
-        </div>
+        </drag>
         <span v-if="img.show">{{ img.name }}</span>
       </div>
     </div>
@@ -66,7 +67,7 @@
 
 <script>
 import { mapGetters, mapActions } from "vuex";
-
+import { Drag, Drop } from "vue-drag-drop";
 import { getContent } from "@/addtools/addFunctions";
 
 export default {
@@ -76,10 +77,9 @@ export default {
       dropZone: null,
     };
   },
-
+  components: { Drag, Drop },
   mounted() {
     this.dropZone = document.querySelector(".lib-content");
-    console.log(this.$store);
   },
   methods: {
     ...mapActions({

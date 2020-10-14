@@ -19,7 +19,7 @@ export default {
 
     },
     actions: {
-        async addProject({ commit, state }, title) {
+        async addProject({ commit }, title) {
             let project = templateFieldProject(title)
 
             try {

@@ -21,7 +21,6 @@ const imageDetails = {
         getImage(state, obj) {
 
             state.imageDetails = obj
-
         }
     },
 
@@ -29,8 +28,6 @@ const imageDetails = {
 
         // imageDetails
         getImage({ commit, rootGetters }, id) {
-
-            console.log(rootGetters)
 
             let getImageId = rootGetters['libPictures/getImageId']
 

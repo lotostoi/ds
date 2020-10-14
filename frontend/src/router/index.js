@@ -5,7 +5,10 @@ import VueRouter from 'vue-router'
 import DsControll from '../views/kok-library'
 import DsAboutProject from '../views/ds-aboutProject'
 import DsContent from '@/components/library/content'
-import DsProjects from '@/components/library/projects'
+import DsProjects from '@/views/projects/projects'
+import DsProject from '@/views/projects/project'
+import DsProjectObjects from '@/views/projects/project-objects'
+import DsProjectObjectsObject from '@/views/projects/project-objects-object'
 import DsGallery from '@/components/library/gallery'
 import DsObjects from '@/components/library/objects'
 import DsPlug from '@/components/library/plug'
@@ -27,13 +30,23 @@ const routes = [
         name: 'DsProjects',
         path: '/controll/projects',
         component: DsProjects,
-        children: [
-          {
-            name: 'DsPlug',
-            path: '/controll/projects',
-            component: DsPlug
-          },
-        ]
+
+      },
+      {
+        name: 'DsProjects',
+        path: '/controll/projects/:title',
+        component: DsProject,
+        props: true,  
+      },
+      {    
+        path: '/controll/projects/:title/objects',
+        component: DsProjectObjects,
+        props: true,  
+      },
+      {    
+        path: '/controll/projects/:title/objects/:title',
+        component:  DsProjectObjectsObject,
+        props: true,  
       },
       {
         name: 'DsGallery',
