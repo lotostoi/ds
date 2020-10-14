@@ -15,7 +15,21 @@ export default {
         removeProject: (state, _id) => {
             let idx = state.projects.findIndex(p => p._id === _id)
             idx !== -1 && state.project.splice(idx, 1)
+        },
+        changeAnyField: (state, path) => {
+            let field = path.replace('\/controll\/', '').split('\/')
+            let value
+            field.forEach((e, i) => {
+                if (i === 0) {
+                    value = state[e]
+                } else {
+                    value = value[e]
+                }
+            });
+
+            console.log(value);
         }
+
 
     },
     actions: {
@@ -29,6 +43,9 @@ export default {
             } catch (e) {
                 console.log(e);
             }
+        },
+        changeAnyField({ commit }, path) {
+            commit('changeAnyField', path)
         }
     }
 };

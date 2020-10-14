@@ -3,7 +3,7 @@ export default (title) => ({
     link: `/controll/projects/${title}`,
     fields: [
         {
-            title: 'OBJECT',
+            title: 'OBJECTS',
             link: `/controll/projects/${title}/objects`,
             fields: [
                 {

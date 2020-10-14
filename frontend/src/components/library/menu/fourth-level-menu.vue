@@ -10,7 +10,7 @@
       <drop
         @dragover="over = true"
         @dragleave="over = false"
-        @drop="handleDrop"
+        @drop="changeAnyField(toLink)"
       >
         {{ title }}
       </drop>
@@ -27,6 +27,7 @@ import MainTemplateMenu from "@/components/library/menu/mainTemplate";
 import IconTriangle from "@/components/library/menu/iconTriangle";
 import ButtonPlus from "@/components/library/menu/buttonPlus";
 import { Drag, Drop } from "vue-drag-drop";
+import { mapActions } from "vuex";
 export default {
   props: {
     title: {
@@ -54,6 +55,9 @@ export default {
     Drop,
   },
   methods: {
+    ...mapActions({
+      changeAnyField: "menuProjects/changeAnyField",
+    }),
     handleDrop(data) {
       this.over = false;
       alert(`You dropped with data: ${JSON.stringify(data)}`);
