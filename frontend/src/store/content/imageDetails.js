@@ -1,5 +1,3 @@
-import store from ".."
-
 
 const imageDetails = {
 
@@ -11,9 +9,7 @@ const imageDetails = {
     },
 
     getters: {
-
         imageDetails: state => state.imageDetails,
-
     },
 
     mutations: {
@@ -38,10 +34,7 @@ const imageDetails = {
             }
 
         },
-
     }
-
-
 }
 
 export default imageDetails

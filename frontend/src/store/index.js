@@ -5,10 +5,10 @@ Vue.use(Vuex)
 
 import progresBar from "@/store/progresBar"
 
-import libScale from "@/store/library/scale"
-import libPictures from "@/store/library/pictures"
-import libImageDetails from "@/store/library/imageDetails.js"
-import libSelected from "@/store/library/selected"
+import libScale from "@/store/content/scale"
+import libPictures from "@/store/content/pictures"
+import libImageDetails from "@/store/content/imageDetails.js"
+import libSelected from "@/store/content/selected"
 import menuProjects from "@/store/menu-projects/menuProjects"
 
 

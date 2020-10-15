@@ -11,28 +11,21 @@ function getIndexById(arr, id) {
 const library = {
 
     namespaced: true,
-
     state: {
-
         // буфер для выделенных картинок
         selected: [],
         // блокировка кнопки удаления 
         allow: false
     },
     getters: {
-
         selected: state => state.selected,
-
         allow: state => state.allow
-
     },
     mutations: {
-
         // selected 
         addToSelected(state, obj) {
             let { selected } = state
             selected.push(obj)
-
         },
 
         allSelected(state, arr) {
@@ -117,13 +110,9 @@ const library = {
                             })
 
                             let data = await res.json()
-
-                            //Vue.set(el, 'active', false)
-
                             if (data.status === "Succes") {
-                                //  commit('hidenPicture', el.id)
                                 dispatch('progresBar/valProgBar', prog, { root: true })
-                                console.log(`Object "${el.name}" was deleted! `)
+
                             } else {
                                 reject(console.error(`Error - ${data.status}`))
                             }

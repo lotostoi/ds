@@ -1,13 +1,14 @@
 export { getContent }
 
-const getContent = (arr, rout, chengProg) => {
+// function for senting to server images which was putted in the  content's window
+// callback "changeProg" needs to controll progressbar's value 
+// arr - array of files(.jpg,.png .....) 
+// rout - path to server
 
+const getContent = (arr, rout, changeProg) => {
     return new Promise(async (resolve, reject) => {
-
         for (let i = 0; i <= arr.length + 1; i++) {
-
             let prog = (i * 100) / arr.length;
-
             if (arr[i]) {
                 const el = arr[i];
                 let url = rout;
@@ -26,12 +27,11 @@ const getContent = (arr, rout, chengProg) => {
                     reject("Error loading file:" + e);
                 }
             } else {
-                chengProg(prog)
+                changeProg(prog)
                 resolve(console.log('Data loaded'))
             }
         }
     })
-
 }
 
 

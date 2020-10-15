@@ -1,10 +1,9 @@
 import Vue from "vue"
-
 import getData from "@/server/server"
-
 import { prefixForProxy } from "@/addtools/globalVar"
-
 const link = prefixForProxy + '/getPhoto'
+
+import * as contentApi from "@/api/contentApi.js"
 
 //const del = prefixForProxy + '/del'
 
@@ -16,8 +15,6 @@ function getIndexById(arr, id) {
 const images = {
 
     namespaced: true,
-
-
     state: {
         // исходный массив картинок
         pictures: [],
@@ -27,7 +24,6 @@ const images = {
 
         getImageId: state => id => state.pictures.find(e => e._id == id),
     },
-
     mutations: {
         // pictures
         getPictures(state, data) {
@@ -49,9 +45,7 @@ const images = {
                 false
             )
         },
-
         // for module selected 
-
         changeByIndex(state, { idx, field, value }) {
             Vue.set(state.pictures[idx], field, value)
         },
@@ -67,11 +61,11 @@ const images = {
         async getPictures({ commit }) {
             let data = []
             try {
-                let data = await getData(link, 'POST')
+                let data = await contentApi.all()
                 commit('getPictures', data)
             } catch (e) {
+
                 data = []
-                //  commit('statusError', true)
                 commit('getPictures', data)
                 console.log(`Data reciven error: ${e}`)
             }
@@ -80,27 +74,10 @@ const images = {
         changeByIndex({ commit }, obj) {
             commit('changeByIndex', obj)
         },
-        
+
         changeAll({ commit }, obj) {
             commit('changeAll', obj)
         },
-
-
-
-        /*     async delete({ state }) {
-    
-                let { pictures } = state
-    
-                for (const el of pictures) {
-                    await fetch(del + "/" + el._id, {
-                        method: "DELETE",
-                        'Content-type': "application/json",
-                    }).then(data => data.json())
-                        .then(data => console.log(data))
-                }
-    
-            }, */
-
     }
 
 }
