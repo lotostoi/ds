@@ -27,10 +27,21 @@
             :title="field.title"
             :toLink="field.link"
             :type="field.type"
-            v-for="(field, j) of field.fields"
-            :key="field.title + j"
-            
+            v-for="(field) of field.fields"
+            :key="field.id"
+            :id="field.id"
+            :content="field.fields.length !== 0"
           >
+            <fourth-level-menu
+              :borderNo="'all'"
+              :title="field.name"
+              :toLink="field.link"
+              :type="field.type"
+              v-for="field of field.fields"
+              :key="field.id"
+              :id="field.id"
+            >
+            </fourth-level-menu>
           </fourth-level-menu>
         </third-level-menu>
       </second-level-menu>

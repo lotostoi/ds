@@ -3,6 +3,7 @@
     :borderNo="borderNo"
     :toLink="toLink"
     :content="content"
+    :id="id"
     class="second"
   >
     <template v-slot:title>
@@ -10,7 +11,7 @@
       <drop
         @dragover="over = true"
         @dragleave="over = false"
-        @drop="changeAnyField(toLink)"
+        @drop="handleDrop"
       >
         {{ title }}
       </drop>
@@ -45,6 +46,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    id: {
+      type: String,
+      required: true,
+    },
   },
   data: () => ({ over: false }),
 
@@ -58,10 +63,9 @@ export default {
     ...mapActions({
       changeAnyField: "menuProjects/changeAnyField",
     }),
-    handleDrop(data) {
+    handleDrop({ example }) {
       this.over = false;
-      alert(`You dropped with data: ${JSON.stringify(data)}`);
-      console.log(this.toLink);
+      this.changeAnyField({ obj: example, id: this.id });
     },
   },
 };

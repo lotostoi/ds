@@ -1,5 +1,20 @@
 import templateFieldProject from "@/store/menu-projects/projectTemplate"
 import * as projectsApi from "@/api/projectsApi.js"
+import Vue from "vue"
+import { nanoid } from 'nanoid'
+
+function editById(bigObj, id, newobj) {
+    let flag = true
+    for (let obj in bigObj) {
+        if (bigObj[obj] && bigObj[obj].id === id) {
+            let objForChange = bigObj[obj]
+            Vue.set(objForChange.fields, objForChange.fields.length, { ...newobj, id: nanoid() })
+            flag = false
+        } else if (typeof (bigObj[obj]) === "object") {
+            flag ? editById(bigObj[obj], id, newobj) : false
+        }
+    }
+}
 
 export default {
     namespaced: true,
@@ -17,35 +32,30 @@ export default {
             idx !== -1 && state.project.splice(idx, 1)
         },
         changeAnyField: (state, path) => {
-            let field = path.replace('\/controll\/', '').split('\/')
-            let value
-            field.forEach((e, i) => {
-                if (i === 0) {
-                    value = state[e]
-                } else {
-                    value = value[e]
-                }
-            });
 
-            console.log(value);
         }
 
 
     },
     actions: {
-        async addProject({ commit }, title) {
+        async addProject({ commit, state }, title) {
             let project = templateFieldProject(title)
 
             try {
                 await projectsApi.add(project)
                 commit('addProject', project)
-
             } catch (e) {
                 console.log(e);
             }
         },
-        changeAnyField({ commit }, path) {
-            commit('changeAnyField', path)
+        changeAnyField({ commit, state }, { obj, id }) {
+            console.log(obj)
+
+            editById(state.projects, id, obj);
+            console.log(state.projects);
+            commit('changeAnyField', id)
         }
     }
 };
+
+
