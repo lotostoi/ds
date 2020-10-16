@@ -11,7 +11,7 @@ import VueDragDrop from 'vue-drag-drop';
  
 Vue.use(VueDragDrop);
 
-import { prefixForProxy } from "@/addtools/globalVar"
+import { prefixForProxy } from "@/functions/globalVar"
 
 
 Vue.prototype.$prefixForProxy = prefixForProxy

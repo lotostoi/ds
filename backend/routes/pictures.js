@@ -24,7 +24,9 @@ let upload = multer({ storage: storage })
 router.post('/', upload.single('file'), async (req, res) => {
 
     let link = path.join(__dirname, '..', 'files', req.file.filename)
-    try {
+
+    //  to determine the orientation of images, you need to uncomment the code below
+/*     try {
         new ExifImage({ image: link }, function (error, exifData) {
             if (error)
                 console.log('Error: ' + error.message);
@@ -33,7 +35,7 @@ router.post('/', upload.single('file'), async (req, res) => {
         });
     } catch (error) {
         console.log('Error: ' + error.message);
-    }
+    } */
 
     let obj = new Image({
         time: moment().format('MMMM Do YYYY, h:mm:ss a'),

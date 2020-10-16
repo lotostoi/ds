@@ -2,6 +2,7 @@ import templateFieldProject from "@/store/menu-projects/projectTemplate"
 import * as projectsApi from "@/api/projectsApi.js"
 import Vue from "vue"
 import { nanoid } from 'nanoid'
+import { findById } from "@/functions/functions"
 
 function editById(bigObj, id, newobj) {
     let flag = true
@@ -48,11 +49,11 @@ export default {
                 console.log(e);
             }
         },
-        changeAnyField({ commit, state }, { obj, id }) {
-            console.log(obj)
-
-            editById(state.projects, id, obj);
-            console.log(state.projects);
+        async changeAnyField({ commit, state }, { obj, id }) {
+            
+            let objForChange = await findById(state.projects, id)
+            console.log(objForChange, 'sdfs')
+            // Vue.set(objForChange.fields, objForChange.fields.length, { ...obj, id: nanoid() })
             commit('changeAnyField', id)
         }
     }

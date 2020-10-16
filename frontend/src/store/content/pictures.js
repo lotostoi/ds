@@ -1,11 +1,7 @@
 import Vue from "vue"
-import getData from "@/server/server"
-import { prefixForProxy } from "@/addtools/globalVar"
-const link = prefixForProxy + '/getPhoto'
+import { all } from "@/api/contentApi.js"
 
-import * as contentApi from "@/api/contentApi.js"
 
-//const del = prefixForProxy + '/del'
 
 function getIndexById(arr, id) {
     return arr.findIndex(e => e._id.toString() === id.toString())
@@ -61,7 +57,7 @@ const images = {
         async getPictures({ commit }) {
             let data = []
             try {
-                let data = await contentApi.all()
+                let data = await all()
                 commit('getPictures', data)
             } catch (e) {
 
