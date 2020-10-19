@@ -1,7 +1,7 @@
 <template>
   <div class="cont">
     <ds-progress-bar />
-    <header-for-content />
+    <header-for-content>Files</header-for-content>
     <files :type="'base'" :pictures="pictures" />
     <footer-for-body />
   </div>
@@ -32,9 +32,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
 .cont {
   width: 100%;
 }
-
 </style>

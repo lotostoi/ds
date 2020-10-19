@@ -1,7 +1,8 @@
 <template>
   <div class="controll-body-header">
-    <h2>Files</h2>
+    <h2><slot></slot></h2>
     <button
+      v-if="show"
       @click="delSelected"
       class="trash"
       :class="allow || selected.length == 0 ? 'disabled' : ''"
@@ -20,6 +21,12 @@ export default {
       rout: this.$prefixForProxy + "/files",
       dropZone: null,
     };
+  },
+  props: {
+    show: {
+      type: Boolean,
+      default: true,
+    },
   },
   methods: {
     ...mapActions({
@@ -46,7 +53,8 @@ export default {
   & > h2 {
     display: flex;
     margin: 0 auto;
-    font-size: 25px;
+    font-size: 1.2rem;
+    font-weight: 300;
     color: $fontColor;
   }
   & > .trash {

@@ -1,14 +1,23 @@
 <template>
   <div class="page-content">
-    <h3 class="page-content__h3">Progects</h3>
+    <header-for-content :show="false">Projects</header-for-content>
     <div class="page-content__content">
-     
-      <nav v-if ="projects.length" class="page-content__nav">
-        <a href="#" v-for="(project, i) in projects" :key="i">{{
-          project.title
-        }}</a>
-      </nav>
-      <p v-else> Create project... </p>
+      <transition-group
+        enter-active-class="left-right-enter"
+        leave-active-class="left-right-leave"
+        tag="nav"
+        v-if="projects.length"
+        class="page-content__nav"
+      >
+        <router-link
+          href="#"
+          v-for="(project, i) in projects"
+          :key="i"
+          :to="project.link"
+          >{{ project.title }}</router-link
+        >
+      </transition-group>
+      <p v-else>Create project...</p>
       <hr />
       <input
         type="text"
@@ -25,12 +34,14 @@
         <span>Add project</span>
         <span>+</span>
       </button>
+      <router-view></router-view>
     </div>
   </div>
 </template>
 
 <script>
 import { mapGetters, mapActions } from "vuex";
+import HeaderForContent from "@/components/controll/headerForContent";
 export default {
   data: () => ({
     value: "",
@@ -40,6 +51,7 @@ export default {
       addProject: "menuProjects/addProject",
     }),
   },
+  components: { HeaderForContent },
   computed: {
     ...mapGetters({
       projects: "menuProjects/projects",

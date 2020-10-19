@@ -1,7 +1,9 @@
 <template>
   <div class="page-content">
     <h3 class="page-content__h3">Object: {{ link }}</h3>
-    <div class="page-content__content"></div>
+    <div class="page-content__content">
+      <router-view></router-view>
+    </div>
   </div>
 </template>
 
@@ -18,15 +20,13 @@ export default {
     link: "",
   }),
   mounted() {
-    this.link = this.$router.currentRoute.path.replace('\/controll',''); 
+    this.link = this.$router.currentRoute.path.replace("/controll", "");
   },
   watch: {
-      title() {
-          this.link = this.$router.currentRoute.path.replace('\/controll',''); 
-      }
-  }
-
-
+    title() {
+      this.link = this.$router.currentRoute.path.replace("/controll", "");
+    },
+  },
 };
 </script>
 

@@ -14,7 +14,7 @@ export default (title) => ({
                     id: nanoid(),
                     title: 'Single',
                     fields: [],
-                    link: `/controll/projects/${title}/objects/single`,
+                    link: `/controll/projects/${title}/objects/single/`,
                 },
                 {
                     id: nanoid(),
@@ -55,6 +55,6 @@ export default (title) => ({
             fields: [],
         }
     ],
-    
+
 });
 

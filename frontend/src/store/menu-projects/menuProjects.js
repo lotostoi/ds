@@ -4,18 +4,6 @@ import Vue from "vue"
 import { nanoid } from 'nanoid'
 import { findById } from "@/functions/functions"
 
-function editById(bigObj, id, newobj) {
-    let flag = true
-    for (let obj in bigObj) {
-        if (bigObj[obj] && bigObj[obj].id === id) {
-            let objForChange = bigObj[obj]
-            Vue.set(objForChange.fields, objForChange.fields.length, { ...newobj, id: nanoid() })
-            flag = false
-        } else if (typeof (bigObj[obj]) === "object") {
-            flag ? editById(bigObj[obj], id, newobj) : false
-        }
-    }
-}
 
 export default {
     namespaced: true,
@@ -49,11 +37,11 @@ export default {
                 console.log(e);
             }
         },
-        async changeAnyField({ commit, state }, { obj, id }) {
-            
-            let objForChange = await findById(state.projects, id)
-            console.log(objForChange, 'sdfs')
-            // Vue.set(objForChange.fields, objForChange.fields.length, { ...obj, id: nanoid() })
+        changeAnyField({ commit, state }, { obj, id }) {
+
+            let objForChange = findById(state.projects, id)
+            //  setTimeout(() => { console.log(objForChange) }, 1000)
+            Vue.set(objForChange.fields, objForChange.fields.length, { ...obj, id: nanoid() })
             commit('changeAnyField', id)
         }
     }

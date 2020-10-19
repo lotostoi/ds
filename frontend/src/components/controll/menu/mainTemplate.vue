@@ -7,19 +7,22 @@
         </slot>
       </div>
       <router-link
-        v-if="toLink"
+        v-if="type === 'link'"
         @click="open"
-        :to="!toLink.includes('\/') ? { name: toLink }: toLink"
+        :to="!toLink.includes('\/') ? { name: toLink } : toLink"
         class="ds-field-link"
-     
         active-class="active"
       >
         <slot name="title"></slot>
       </router-link>
-      <div v-else class="title">
+      <div
+        v-else
+        class="title"
+        @click="toPage"
+        :class="content ? 'cursor' : ''"
+      >
         <slot name="title"></slot>
       </div>
-
       <slot name="button">
         <button-plus />
       </slot>
@@ -52,10 +55,17 @@ export default {
       type: Boolean,
       default: false,
     },
+    type: {
+      type: String,
+      default: "link",
+    },
+    id: {
+      type: String,
+      required: null,
+    },
   },
   data: () => ({
     show: false,
-    //  content: null,
     delay: 400,
     flag: false,
   }),
@@ -65,7 +75,6 @@ export default {
   },
   methods: {
     open() {
-     
       if (!this.flag && this.content) {
         this.show = !this.show;
       }
@@ -75,6 +84,10 @@ export default {
       if (height > 300 && height < 600) return 1 * this.delay;
       if (height > 600 && height < 900) return 2 * this.delay;
       if (height > 900) return 3 * this.delay;
+    },
+    toPage() {
+      console.log(`${this.toLink}${this.id}`);
+      this.$router.push(`${this.toLink}${this.id}`);
     },
   },
   watch: {
@@ -235,5 +248,8 @@ $timeAnim: 300ms;
   position: absolute;
   visibility: hidden;
   height: auto;
+}
+.cursor {
+  cursor: pointer;
 }
 </style>

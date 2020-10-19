@@ -28,60 +28,51 @@ const routes = [
       },
       {
         name: 'DsProjects',
-        path: '/controll/projects',
+        path: 'projects',
         component: DsProjects,
+      },
+      {
+        path: 'projects/:title',
+        component: DsProject,
+        props: true,
 
       },
       {
-        name: 'DsProjects',
-        path: '/controll/projects/:title',
-        component: DsProject,
-        props: true,
-      },
-      {
-        path: '/controll/projects/:title/objects',
+        path: 'projects/:title/objects',
         component: DsProjectObjects,
         props: true,
-        children: [
-          {
-            path: "single",
-            component: DsProjectObjectsObjectSingle
-          },
-          {
-            path: "slider",
-            component: DsProjectObjectsObjectSingle
-          },
-        ]
       },
-     /*  {
-        path: '/controll/projects/:title/objects/:title',
-        component: DsProjectObjectsObject,
+      {
+        path: 'projects/:title/objects/single/:id',
+        component: DsProjectObjectsObjectSingle,
         props: true,
       },
       {
-        path: '/controll/projects/:title/objects/:title',
-        component: DsProjectObjectsObject,
-        props: true,
-      }, */
-      {
-        name: 'DsGallery',
-        path: '/controll/gallery',
-        component: DsGallery
+        path: 'projects/:title/objects/slider/:id',
+        component: DsProjectObjectsObjectSingle
       },
-      {
-        name: 'DsDashboard',
-        path: '/controll/dashboard',
-        component: DsDashboard
-      },
-      {
-        name: 'DsPlug',
-        path: '/controll/plug',
-        component: DsPlug
-      },
-      {
-        path: '*',
-        redirect: { name: 'DsPlug' },
-      },
+
+
+      /* 
+            {
+              name: 'DsGallery',
+              path: '/controll/gallery',
+              component: DsGallery
+            },
+            {
+              name: 'DsDashboard',
+              path: '/controll/dashboard',
+              component: DsDashboard
+            },
+            {
+              name: 'DsPlug',
+              path: '/controll/plug',
+              component: DsPlug
+            },
+            {
+              path: '*',
+              redirect: { name: 'DsPlug' },
+            }, */
     ]
   },
   {

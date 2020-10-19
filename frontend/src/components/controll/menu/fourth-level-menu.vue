@@ -4,6 +4,7 @@
     :toLink="toLink"
     :content="content"
     :id="id"
+    :type="'batton'"
     class="second"
   >
     <template v-slot:title>

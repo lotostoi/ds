@@ -160,7 +160,7 @@ export default {
   background-image: url("~@/assets/img/loader.svg");
   background-repeat: no-repeat;
   background-position: center;
-  border: 1px solid gray;
+  outline: 1px solid gray;
   margin: 10px auto;
   height: 150px;
   width: 250px;

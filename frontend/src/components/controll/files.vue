@@ -10,7 +10,7 @@
       <drag
         v-if="img.show"
         :transfer-data="{ example: img }"
-        :style="`height:${100 + 2 * range + 0.5}px; width:${
+        :style="`height:${100 + 2 * range}px; width:${
           (100 + 2 * range) * img.k
         }px`"
         class="div-img"
@@ -148,12 +148,16 @@ export default {
   align-items: center;
   box-sizing: border-box;
   & > .div-img {
-    padding: 1px;
+    margin: 10px;
+    padding: 2px 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background-color: #131313;
     background-image: url("~@/assets/img/loader.svg");
     background-repeat: no-repeat;
     background-position: center;
-    border: 1px solid rgba(128, 128, 128, 0.397);
+    outline: 1px solid rgba(128, 128, 128, 0.397);
   }
   & > span {
     margin: 10px;

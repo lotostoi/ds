@@ -35,20 +35,24 @@ const getContent = (arr, rout, changeProg) => {
 }
 
 
-const findById = (bigObj, id) => {
-    let result = 'sss'
 
-    for (let obj in bigObj) {
-        console.log(bigObj[obj].title)
-        if (bigObj[obj] && bigObj[obj].id === id) {
-            result = bigObj[obj]
-            return result
-        } else if (typeof (bigObj[obj]) === "object") {
-            findById(bigObj[obj], id)
+const findById = (bigObj, id) => {
+    let result = null
+    const fById = (bigObj, id) => {
+        for (let obj in bigObj) {
+            if (bigObj[obj] && bigObj[obj].id === id) {
+                result = bigObj[obj]
+                console.log('tt');
+                break
+            }
+            else if (typeof (bigObj[obj]) === "object") {
+                fById(bigObj[obj], id)
+                break
+            }
         }
     }
-    console.log(result)
+    fById(bigObj, id)
 
+    return result
 }
-
 

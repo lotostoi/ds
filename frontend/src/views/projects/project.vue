@@ -1,7 +1,9 @@
 <template>
   <div class="page-content">
     <h3 class="page-content__h3">Project: {{ title }}</h3>
-    <div class="page-content__content"></div>
+    <div class="page-content__content">
+      <router-view></router-view>
+    </div>
   </div>
 </template>
 

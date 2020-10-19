@@ -4,14 +4,14 @@
     }
 
     to {
-        transform: translateY(30px);
+       transform: translateY(30px);
         opacity  : 0;
     }
 }
 
 @keyframes enter {
     from {
-        transform: translateY(-30px);
+       transform: translateY(-30px);
 
         opacity: 0;
     }
@@ -27,9 +27,41 @@
 }
 
 .sl-leave {
-    animation: leave 0.3s linear forwards;
+    animation: leave 0.2s linear forwards;
 }
 
 .sl-enter {
-    animation: enter 0.3s linear forwards;
+    animation: enter 0.2s linear forwards;
+}
+
+@keyframes left-right-leave {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(20px);
+  }
+}
+
+@keyframes left-right-enter {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.left-right-enter {
+  animation: left-right-enter 0.3s linear;
+}
+
+.left-right-leave {
+  animation: left-right-leave 0.3s linear;
 }
