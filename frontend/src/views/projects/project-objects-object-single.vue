@@ -1,5 +1,6 @@
 <template>
   <div class="page-content">
+    <header-for-content :show="false"> Single : {{ link }} </header-for-content>
     <files :pictures="content" />
     <footer-for-body />
   </div>
@@ -29,7 +30,6 @@ export default {
   }),
   mounted() {
     this.link = this.$router.currentRoute.path.replace("/controll", "");
-    console.log(this.content);
   },
   watch: {
     title() {

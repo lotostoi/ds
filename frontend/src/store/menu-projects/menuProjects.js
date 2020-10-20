@@ -40,7 +40,6 @@ export default {
         changeAnyField({ commit, state }, { obj, id }) {
 
             let objForChange = findById(state.projects, id)
-            //  setTimeout(() => { console.log(objForChange) }, 1000)
             Vue.set(objForChange.fields, objForChange.fields.length, { ...obj, id: nanoid() })
             commit('changeAnyField', id)
         }

@@ -6,7 +6,11 @@
     @drop.prevent="drop"
     @click="delSel($event)"
   >
-    <div class="controll-cont-img" v-for="img in pictures" :key="img._id">
+    <div
+      class="controll-cont-img"
+      v-for="(img, i) in pictures"
+      :key="img._id + i"
+    >
       <drag
         v-if="img.show"
         :transfer-data="{ example: img }"
@@ -92,7 +96,7 @@ export default {
       if (this.type === "base") {
         !e.ctrlKey && this.clearSelected();
         e.ctrlKey &&
-          e.target.classList.contains("lib-content") &&
+          e.target.classList.contains("controll-content") &&
           this.allSelected();
       }
     },
@@ -148,7 +152,6 @@ export default {
   align-items: center;
   box-sizing: border-box;
   & > .div-img {
-    margin: 10px;
     padding: 2px 0px;
     display: flex;
     align-items: center;

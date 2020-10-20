@@ -86,8 +86,9 @@ export default {
       if (height > 900) return 3 * this.delay;
     },
     toPage() {
-      console.log(`${this.toLink}${this.id}`);
-      this.$router.push(`${this.toLink}${this.id}`);
+      if (this.$router.currentRoute.path !== `${this.toLink}${this.id}`) {
+        this.$router.push(`${this.toLink}${this.id}`);
+      }
     },
   },
   watch: {

@@ -1,4 +1,4 @@
- // module to control values of progress bar
+// module to control values of progress bar
 
 const progresBar = {
     namespaced: true,
@@ -11,23 +11,22 @@ const progresBar = {
         valueProgresBar: state => state.valueProgresBar,
     },
     mutations: {
-        changeShow(state, value) { 
+        changeShow(state, value) {
             state.show = value
-           
+
         },
-        changeValueProgresBar(state, value) { 
+        changeValueProgresBar(state, value) {
             state.valueProgresBar = value
-            console.log(state.valueProgresBar)
         },
     },
     actions: {
-        showON({ commit}) { 
+        showON({ commit }) {
             commit('changeShow', true)
         },
-        showOFF({ commit}) { 
+        showOFF({ commit }) {
             commit('changeShow', false)
         },
-        valProgBar({ commit }, val) { 
+        valProgBar({ commit }, val) {
             commit('changeValueProgresBar', val)
         }
     }

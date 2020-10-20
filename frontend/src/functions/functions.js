@@ -42,7 +42,6 @@ const findById = (bigObj, id) => {
         for (let obj in bigObj) {
             if (bigObj[obj] && bigObj[obj].id === id) {
                 result = bigObj[obj]
-                console.log('tt');
                 break
             }
             else if (typeof (bigObj[obj]) === "object") {

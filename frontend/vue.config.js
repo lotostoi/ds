@@ -1,24 +1,23 @@
 module.exports = {
-	css: {
-		loaderOptions: {
-			scss: {
-				additionalData: `@import "~@/assets/scss/global.scss";`
-			},
+  css: {
+    loaderOptions: {
+      scss: {
+        additionalData: `@import "~@/assets/scss/global.scss";`
+      },
 
-		}
-	},
-	configureWebpack: (config) => {
-		return {
-			devServer: {
-				proxy: {
-					'/rout': {
-						target: 'http://0.0.0.0:3000',
-						secure: false,
-						changeOrigin: true
-
-					}
-				}
-			}
-		}
-	}
+    }
+  },
+  configureWebpack: (config) => {
+    return {
+      devServer: {
+        proxy: {
+          '/rout': {
+            target: 'http://0.0.0.0:3000',
+            secure: false,
+            changeOrigin: true
+          }
+        }
+      }
+    }
+  }
 }

@@ -27,6 +27,11 @@ const routes = [
         component: DsContent
       },
       {
+        name: 'DsDashboard',
+        path: 'dashboard',
+        component: DsDashboard
+      },
+      {
         name: 'DsProjects',
         path: 'projects',
         component: DsProjects,
@@ -75,6 +80,7 @@ const routes = [
             }, */
     ]
   },
+
   {
     path: '/',
     name: 'aboutProject',
